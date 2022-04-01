@@ -1,0 +1,4 @@
+C:\Users\kdj\Documents\Programming\Projects\6. FileUploader\BusinessLogic\obj\Debug\Logic.csproj.AssemblyReference.cache
+C:\Users\kdj\Documents\Programming\Projects\6. FileUploader\BusinessLogic\obj\Debug\Logic.csproj.CoreCompileInputs.cache
+C:\Users\kdj\Documents\Programming\Projects\6. FileUploader\BusinessLogic\obj\Debug\BusinessLogic.exe
+C:\Users\kdj\Documents\Programming\Projects\6. FileUploader\BusinessLogic\obj\Debug\BusinessLogic.pdb

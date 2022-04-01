@@ -1,0 +1,18 @@
+﻿@model GymTracker.ViewModels.ImporterLoader
+
+@{
+    ViewBag.Title = "Import CSV";
+}
+
+<h2>Import CSV</h2>
+
+@using (Html.BeginForm("ImportCSV", "Importer", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    if (Model.ErrorMessage != "")
+    {
+        <p class="error-text">@Model.ErrorMessage</p>
+    }
+    <input class="custom-file-upload" type="file" name="SubmittedCSVFile" />
+    <br />
+    <input class="main-button" type="submit" name="Submit" id="Submit" value="Upload" />
+}

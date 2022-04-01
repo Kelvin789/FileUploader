@@ -1,0 +1,12 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>Gym Tracker</h1>
+</div>
+
+@using (Html.BeginForm("ImportCSV", "Importer", FormMethod.Get))
+{
+    <input type="submit" class="main-button" value="Import CSV">
+}
