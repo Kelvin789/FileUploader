@@ -1,4 +1,4 @@
-﻿@model GymTracker.ViewModels.ImporterLoader
+﻿@model FileUploader.ViewModels.ImporterLoader
 
 @{
     ViewBag.Title = "Import CSV";
@@ -6,7 +6,7 @@
 
 <h2>Import CSV</h2>
 
-@using (Html.BeginForm("ImportCSV", "Importer", FormMethod.Post, new { enctype = "multipart/form-data" }))
+@using (Html.BeginForm("ImportCSVTestRun", "Importer", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     if (Model.ErrorMessage != "")
     {

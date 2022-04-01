@@ -39,6 +39,10 @@ namespace FileUploader.Controllers
         {
             try
             {
+                ImporterLoader GymTrackerLoader = new ImporterLoader
+                {
+                    ErrorMessage = ""
+                };
 
                 return View();
             }
