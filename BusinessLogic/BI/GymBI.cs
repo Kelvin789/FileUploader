@@ -4,40 +4,53 @@ using BusinessLogic.Helper;
 using BusinessLogic.ViewModels;
 using Microsoft.VisualBasic.FileIO;
 using System.Data;
-//using FileUploader.Models;
+using BusinessLogic.Models;
 
 namespace BusinessLogic.BI
 {
     public class GymBI
     {
-        public ImportViewResult BeginImportProcess(BytesToFile File, bool IsSave)
+        GymEntities db = new GymEntities();
+
+        public ViewResults BeginImportProcess(BytesToFile File, bool IsSave)
         {
-            ImportViewResult IVR = new ImportViewResult();
+            ViewResults IVR = new ViewResults();
             IVR = ParseImportedCSV(File);
 
+            // Return if any errors found
             if (IVR.Validation != "")
             {
                 return IVR;
             }
 
-            int CreatedRecordCount = 0;
-
-            foreach (var item in IVR.RecordBuilderList)
+            foreach (RecordBuilder record in IVR.RecordBuilderList)
             {
-                // model = CreateRecord(IsSave)
+                GymTracker GymTracker = BuildGymTracker(record);
+                db.GymTrackers.Add(GymTracker);
+            }
+
+            // Return if any errors found
+            if (IVR.Validation != "")
+            {
+                return IVR;
             }
 
             if (IsSave == true)
             {
-                //Save();
+                db.SaveChanges();
             }
 
             return IVR;
         }
 
-        public ImportViewResult ParseImportedCSV(BytesToFile File)
+        /// <summary>
+        /// Validates file and trys to put content in DataTable
+        /// </summary>
+        /// <param name="File">File inputted</param>
+        /// <returns></returns>
+        public ViewResults ParseImportedCSV(BytesToFile File)
         {
-            ImportViewResult IVR = new ImportViewResult
+            ViewResults IVR = new ViewResults
             {
                 Validation = "",
                 RecordBuilderList = new List<RecordBuilder>()
@@ -51,11 +64,12 @@ namespace BusinessLogic.BI
 
                 DataTable ImportInput = new DataTable("ImportInput");
 
-                ImportInput.Columns.Add("Date", typeof(DateTime)).DefaultValue = new DateTime(0001, 0, 0);
+                ImportInput.Columns.Add("Date", typeof(DateTime));
                 ImportInput.Columns.Add("BodyPart", typeof(string)).DefaultValue = "";
                 ImportInput.Columns.Add("Exercise", typeof(string)).DefaultValue = "";
-                ImportInput.Columns.Add("Sets", typeof(int)).DefaultValue = 0;
-                ImportInput.Columns.Add("Reps", typeof(int)).DefaultValue = 0;
+                ImportInput.Columns.Add("Sets", typeof(string)).DefaultValue = "";
+                ImportInput.Columns.Add("Reps", typeof(string)).DefaultValue = "";
+                ImportInput.Columns.Add("Weight", typeof(string)).DefaultValue = "";
 
                 string[] TempResults = Parser.ReadFields();
                 TempResults = Parser.ReadFields(); // To skip headers and reads second line
@@ -71,18 +85,19 @@ namespace BusinessLogic.BI
                         Type SourceType = TempResults[i].GetType();
                         string ErrorColumn = ImportInput.Columns[i].ColumnName;
 
+                        // Data type validation
                         if (i == 0 && (!DateTime.TryParse(TempResults[i].Trim(), out DateTime DateTimeConverted)))
                         {
                             IVR.Validation = "Invalid input within file: column " + ErrorColumn + " contains an invalid cell. "
                                              + TargetType.Name + " expected where " + SourceType.Name + ": '" + TempResults[i] + "' is provided.";
                             return IVR;
                         }
-                        else if ((i == 3 || i == 4) && (!int.TryParse(TempResults[i].Trim(), out int IntConverted)))
-                        {
-                            IVR.Validation = "Invalid input within file: column " + ErrorColumn + " contains an invalid cell. "
-                                             + TargetType.Name + " expected where " + SourceType.Name + ": '" + TempResults[i] + "' is provided.";
-                            return IVR;
-                        }
+                        //else if ((i == 3 || i == 4) && (!int.TryParse(TempResults[i].Trim(), out int IntConverted)))
+                        //{
+                        //    IVR.Validation = "Invalid input within file: column " + ErrorColumn + " contains an invalid cell. "
+                        //                     + TargetType.Name + " expected where " + SourceType.Name + ": '" + TempResults[i] + "' is provided.";
+                        //    return IVR;
+                        //}
 
                         Record[i] = TempResults[i].Trim();
                     }
@@ -97,13 +112,19 @@ namespace BusinessLogic.BI
             return IVR;
         }
 
+        /// <summary>
+        /// Tries to return a list of RecordBuilder to later save
+        /// </summary>
+        /// <param name="ImportInput">Validated data</param>
+        /// <returns></returns>
         public List<RecordBuilder> BuildRecords(DataTable ImportInput)
         {
             DateTime TempDate = new DateTime(0001, 1, 1);
             string TempBodyPart = "";
             string TempExercise = "";
-            int TempSets = 0;
-            int TempReps = 0;
+            string TempSets = "";
+            string TempReps = "";
+            string TempWeight = "";
 
             string CurrentLine = "";
             string PreviousLine = "";
@@ -119,10 +140,11 @@ namespace BusinessLogic.BI
                 TempDate = item.Field<DateTime>("Date");
                 TempBodyPart = item.Field<string>("BodyPart");
                 TempExercise = item.Field<string>("Exercise");
-                TempSets = item.Field<int>("Sets"); 
-                TempReps = item.Field<int>("Reps");
+                TempSets = item.Field<string>("Sets"); 
+                TempReps = item.Field<string>("Reps");
+                TempWeight = item.Field<string>("Weight");
 
-                CurrentLine = TempDate + TempBodyPart + TempExercise + TempSets + TempReps;
+                CurrentLine = TempDate + TempBodyPart + TempExercise + TempSets + TempReps + TempWeight;
 
                 if (Count != 1 && (CurrentLine != PreviousLine))
                 {
@@ -134,15 +156,16 @@ namespace BusinessLogic.BI
                 {
                     RecordBuilder = new RecordBuilder
                     {
-                        DateTime = TempDate,
+                        DateCreated = TempDate,
                         BodyPart = TempBodyPart,
                         Exercise = TempExercise,
                         Sets = TempSets,
-                        Reps = TempReps
+                        Reps = TempReps,
+                        Weights = TempWeight
                     };
                 }
 
-                PreviousLine = TempDate + TempBodyPart + TempExercise + TempSets + TempReps;
+                PreviousLine = TempDate + TempBodyPart + TempExercise + TempSets + TempReps + TempWeight;
 
                 if (DataRowCount == Count)
                 {
@@ -153,16 +176,19 @@ namespace BusinessLogic.BI
             return RecordBuildersList;
         }
 
-        public void CreateRecord(RecordBuilder RecordBuilder, bool IsSave)
+        public GymTracker BuildGymTracker(RecordBuilder RecordBuilder)
         {
-            // model ini
+            GymTracker GymTracker = new GymTracker
+            {
+                DateCreated = RecordBuilder.DateCreated,
+                BodyPart = RecordBuilder.BodyPart,
+                Exercise = RecordBuilder.Exercise,
+                Sets = RecordBuilder.Sets,
+                Reps = RecordBuilder.Reps,
+                Weights = RecordBuilder.Weights
+            };
 
-            //GymTracker GymTracker = new GymTracker();
-
-            //foreach (var item in collection)
-            //{
-
-            //}
+            return GymTracker;
         }
     }
 }

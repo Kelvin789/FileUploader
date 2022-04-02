@@ -235,6 +235,7 @@ C:\Users\kdj\Documents\GitHub\FileUploader\FileUploader\bin\System.Web.WebPages.
 C:\Users\kdj\Documents\GitHub\FileUploader\FileUploader\bin\Newtonsoft.Json.xml
 C:\Users\kdj\Documents\GitHub\FileUploader\FileUploader\bin\Antlr3.Runtime.pdb
 C:\Users\kdj\Documents\GitHub\FileUploader\FileUploader\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\kdj\Documents\GitHub\FileUploader\FileUploader\obj\Debug\FileUploader.csproj.AssemblyReference.cache
 C:\Users\kdj\Documents\GitHub\FileUploader\FileUploader\obj\Debug\FileUploader.csproj.CoreCompileInputs.cache
 C:\Users\kdj\Documents\GitHub\FileUploader\FileUploader\obj\Debug\FileUploader.csproj.CopyComplete
 C:\Users\kdj\Documents\GitHub\FileUploader\FileUploader\obj\Debug\FileUploader.dll

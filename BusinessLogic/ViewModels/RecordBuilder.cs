@@ -4,10 +4,11 @@ namespace BusinessLogic.ViewModels
 {
     public class RecordBuilder
     {
-        public DateTime DateTime { get; set; }
+        public DateTime DateCreated { get; set; }
         public string BodyPart { get; set; }
         public string Exercise { get; set; }
-        public int Sets { get; set; }
-        public int Reps { get; set; }
+        public string Sets { get; set; }
+        public string Reps { get; set; }
+        public string Weights { get; set; }
     }
 }

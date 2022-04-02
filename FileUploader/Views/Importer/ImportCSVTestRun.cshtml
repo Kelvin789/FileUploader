@@ -1,0 +1,40 @@
+﻿@model FileUploader.ViewModels.ImporterSubmission
+
+<h1>Results Before Save</h1>
+
+@using (Html.BeginForm("ImportCSV", "Importer", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <table>
+        <tr>
+            @*<th>@Html.LabelFor(m => m.ImportViewResult.ImportResultSummary.RecordCreated)</th>
+              <td>@Html.DisplayFor(m => m.ImportViewResult.ImportResultSummary.RecordCreated)</td>*@
+        </tr>
+    </table>
+    <br />
+    <table>
+        @foreach (var item in Model.ImportViewResult.RecordBuilderList)
+        {
+            <tr>
+                <th>Date Created</th>
+                <th>Body Part</th>
+                <th>Exercise</th>
+                <th>Sets</th>
+                <th>Reps</th>
+                <th></th>
+            </tr>
+            <tr>
+                <td>@Html.DisplayFor(m => item.DateCreated)</td>
+                <td>@Html.DisplayFor(m => item.BodyPart)</td>
+                <td>@Html.DisplayFor(m => item.Exercise)</td>
+                <td>@Html.DisplayFor(m => item.Sets)</td>
+                <td>@Html.DisplayFor(m => item.Reps)</td>
+                <td>@Html.DisplayFor(m => item.Weights)</td>
+            </tr>
+        }
+    </table>
+    <br />
+    @Html.HiddenFor(m => m.FileData)
+    @Html.HiddenFor(m => m.ImportViewResult)
+    @Html.HiddenFor(m => m.ErrorMessage)
+    <input class="main-button" type="submit" name="Submit" id="Submit" value="Submit" />
+}

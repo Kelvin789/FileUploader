@@ -12,3 +12,14 @@ C:\Users\kdj\Documents\Programming\Projects\6. FileUploader\BusinessLogic\obj\De
 C:\Users\kdj\Documents\Programming\Projects\6. FileUploader\BusinessLogic\obj\Debug\BusinessLogic.csproj.CoreCompileInputs.cache
 C:\Users\kdj\Documents\Programming\Projects\6. FileUploader\BusinessLogic\obj\Debug\BusinessLogic.exe
 C:\Users\kdj\Documents\Programming\Projects\6. FileUploader\BusinessLogic\obj\Debug\BusinessLogic.pdb
+C:\Users\kdj\Documents\GitHub\FileUploader\BusinessLogic\bin\Debug\BusinessLogic.exe.config
+C:\Users\kdj\Documents\GitHub\FileUploader\BusinessLogic\bin\Debug\BusinessLogic.exe
+C:\Users\kdj\Documents\GitHub\FileUploader\BusinessLogic\bin\Debug\BusinessLogic.pdb
+C:\Users\kdj\Documents\GitHub\FileUploader\BusinessLogic\bin\Debug\EntityFramework.dll
+C:\Users\kdj\Documents\GitHub\FileUploader\BusinessLogic\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\kdj\Documents\GitHub\FileUploader\BusinessLogic\bin\Debug\EntityFramework.xml
+C:\Users\kdj\Documents\GitHub\FileUploader\BusinessLogic\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\kdj\Documents\GitHub\FileUploader\BusinessLogic\obj\Debug\BusinessLogic.csproj.CoreCompileInputs.cache
+C:\Users\kdj\Documents\GitHub\FileUploader\BusinessLogic\obj\Debug\BusinessLogic.csproj.CopyComplete
+C:\Users\kdj\Documents\GitHub\FileUploader\BusinessLogic\obj\Debug\BusinessLogic.exe
+C:\Users\kdj\Documents\GitHub\FileUploader\BusinessLogic\obj\Debug\BusinessLogic.pdb

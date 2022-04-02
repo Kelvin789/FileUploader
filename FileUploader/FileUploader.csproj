@@ -133,24 +133,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Gym.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Gym.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Gym.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Gym.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Gym.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Gym.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Models\GymTracker.cs">
-      <DependentUpon>Gym.tt</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\ImporterSubmission.cs" />
     <Compile Include="ViewModels\ImporterLoader.cs" />
@@ -164,25 +146,8 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Models\Gym.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Gym.edmx</DependentUpon>
-      <LastGenOutput>Gym.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\Gym.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Gym.edmx</DependentUpon>
-      <LastGenOutput>Gym.cs</LastGenOutput>
-    </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EntityDeploy Include="Models\Gym.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Gym.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\Gym.edmx.diagram">
-      <DependentUpon>Gym.edmx</DependentUpon>
-    </Content>
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -207,6 +172,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Importer\ImportCSV.cshtml" />
+    <Content Include="Views\Importer\ImportCSVTestRun.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

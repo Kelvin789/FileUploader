@@ -8,6 +8,6 @@ namespace FileUploader.ViewModels
         public HttpPostedFileBase SubmittedCSVFile { get; set; }
         public string ErrorMessage { get; set; }
         public string FileData { get; set; }
-        public ImportViewResult ImportViewResult { get; set; }
+        public ViewResults ImportViewResult { get; set; }
     }
 }
