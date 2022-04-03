@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="091df6e9f49843d594f9b00d5deb4c84" Name="Diagram1">
+      <Diagram DiagramId="c6eb24d5a30a4e4680624b404ee1e203" Name="Diagram1">
         <EntityTypeShape EntityType="GymModel.GymTracker" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
       </Diagram>
     </edmx:Diagrams>

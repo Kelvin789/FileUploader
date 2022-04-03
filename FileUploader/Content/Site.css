@@ -47,3 +47,41 @@ textarea {
     font-weight: bold;
     color: red;
 }
+
+.summary-table {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 25%;
+}
+
+.summary-table td, .summary-table th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+.summary-table th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #4CAF50;
+    color: white;
+}
+
+.standard-table {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.standard-table td, .standard-table th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+.standard-table th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #4CAF50;
+    color: white;
+}

@@ -5,6 +5,7 @@ using BusinessLogic.ViewModels;
 using Microsoft.VisualBasic.FileIO;
 using System.Data;
 using BusinessLogic.Models;
+using System.Linq;
 
 namespace BusinessLogic.BI
 {
@@ -12,16 +13,18 @@ namespace BusinessLogic.BI
     {
         GymEntities db = new GymEntities();
 
-        public ViewResults BeginImportProcess(BytesToFile File, bool IsSave)
+        public UploaderViewResult BeginUploadProcess(BytesToFile File, bool IsSave)
         {
-            ViewResults IVR = new ViewResults();
-            IVR = ParseImportedCSV(File);
+            UploaderViewResult IVR = new UploaderViewResult();
+            IVR = ParseUploadedCSV(File);
 
             // Return if any errors found
             if (IVR.Validation != "")
             {
                 return IVR;
             }
+
+            IVR.RecordsCreated = IVR.RecordBuilderList.Count;
 
             foreach (RecordBuilder record in IVR.RecordBuilderList)
             {
@@ -35,7 +38,7 @@ namespace BusinessLogic.BI
                 return IVR;
             }
 
-            if (IsSave == true)
+            if (IsSave)
             {
                 db.SaveChanges();
             }
@@ -48,9 +51,9 @@ namespace BusinessLogic.BI
         /// </summary>
         /// <param name="File">File inputted</param>
         /// <returns></returns>
-        public ViewResults ParseImportedCSV(BytesToFile File)
+        public UploaderViewResult ParseUploadedCSV(BytesToFile File)
         {
-            ViewResults IVR = new ViewResults
+            UploaderViewResult IVR = new UploaderViewResult
             {
                 Validation = "",
                 RecordBuilderList = new List<RecordBuilder>()
@@ -62,28 +65,28 @@ namespace BusinessLogic.BI
                 TextFieldParser Parser = new TextFieldParser(File._InputStream);
                 Parser.SetDelimiters(new string[] { "," });
 
-                DataTable ImportInput = new DataTable("ImportInput");
+                DataTable UploadInput = new DataTable("UploadInput");
 
-                ImportInput.Columns.Add("Date", typeof(DateTime));
-                ImportInput.Columns.Add("BodyPart", typeof(string)).DefaultValue = "";
-                ImportInput.Columns.Add("Exercise", typeof(string)).DefaultValue = "";
-                ImportInput.Columns.Add("Sets", typeof(string)).DefaultValue = "";
-                ImportInput.Columns.Add("Reps", typeof(string)).DefaultValue = "";
-                ImportInput.Columns.Add("Weight", typeof(string)).DefaultValue = "";
+                UploadInput.Columns.Add("Date", typeof(DateTime));
+                UploadInput.Columns.Add("BodyPart", typeof(string)).DefaultValue = "";
+                UploadInput.Columns.Add("Exercise", typeof(string)).DefaultValue = "";
+                UploadInput.Columns.Add("Sets", typeof(string)).DefaultValue = "";
+                UploadInput.Columns.Add("Reps", typeof(string)).DefaultValue = "";
+                UploadInput.Columns.Add("Weight", typeof(string)).DefaultValue = "";
 
                 string[] TempResults = Parser.ReadFields();
                 TempResults = Parser.ReadFields(); // To skip headers and reads second line
 
                 while (TempResults != null)
                 {
-                    DataRow Record = ImportInput.NewRow();
+                    DataRow Record = UploadInput.NewRow();
                     int Count = TempResults.GetUpperBound(0);
 
                     for (int i = 0; i <= Count; i++)
                     {
                         Type TargetType = Record[i].GetType();
                         Type SourceType = TempResults[i].GetType();
-                        string ErrorColumn = ImportInput.Columns[i].ColumnName;
+                        string ErrorColumn = UploadInput.Columns[i].ColumnName;
 
                         // Data type validation
                         if (i == 0 && (!DateTime.TryParse(TempResults[i].Trim(), out DateTime DateTimeConverted)))
@@ -102,11 +105,11 @@ namespace BusinessLogic.BI
                         Record[i] = TempResults[i].Trim();
                     }
 
-                    ImportInput.Rows.Add(Record);
+                    UploadInput.Rows.Add(Record);
                     TempResults = Parser.ReadFields();
                 }
 
-                IVR.RecordBuilderList = BuildRecords(ImportInput);
+                IVR.RecordBuilderList = BuildRecords(UploadInput);
             }
 
             return IVR;
@@ -115,9 +118,9 @@ namespace BusinessLogic.BI
         /// <summary>
         /// Tries to return a list of RecordBuilder to later save
         /// </summary>
-        /// <param name="ImportInput">Validated data</param>
+        /// <param name="UploadInput">Validated data</param>
         /// <returns></returns>
-        public List<RecordBuilder> BuildRecords(DataTable ImportInput)
+        public List<RecordBuilder> BuildRecords(DataTable UploadInput)
         {
             DateTime TempDate = new DateTime(0001, 1, 1);
             string TempBodyPart = "";
@@ -128,13 +131,13 @@ namespace BusinessLogic.BI
 
             string CurrentLine = "";
             string PreviousLine = "";
-            int DataRowCount = ImportInput.Select().Length;
+            int DataRowCount = UploadInput.Select().Length;
             int Count = 0;
 
             List<RecordBuilder> RecordBuildersList = new List<RecordBuilder>();
             RecordBuilder RecordBuilder = new RecordBuilder();
 
-            foreach (var item in ImportInput.AsEnumerable())
+            foreach (var item in UploadInput.AsEnumerable())
             {
                 Count++;
                 TempDate = item.Field<DateTime>("Date");
@@ -189,6 +192,13 @@ namespace BusinessLogic.BI
             };
 
             return GymTracker;
+        }
+
+        public List<GymTracker> GetAllGymTrackerRecords()
+        {
+            List<GymTracker> List = db.Set<GymTracker>().ToList();
+
+            return List.ToList();
         }
     }
 }

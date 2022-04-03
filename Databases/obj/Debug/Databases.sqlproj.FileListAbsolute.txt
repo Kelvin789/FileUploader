@@ -1,9 +1,0 @@
-C:\Users\kdj\Documents\GitHub\FileUploader\Databases\bin\Debug\Databases.dacpac
-C:\Users\kdj\Documents\GitHub\FileUploader\Databases\bin\Debug\Databases.dll
-C:\Users\kdj\Documents\GitHub\FileUploader\Databases\bin\Debug\Databases.pdb
-C:\Users\kdj\Documents\GitHub\FileUploader\Databases\obj\Debug\Model.xml
-C:\Users\kdj\Documents\GitHub\FileUploader\Databases\obj\Debug\refactor.xml
-C:\Users\kdj\Documents\GitHub\FileUploader\Databases\obj\Debug\postdeploy.sql
-C:\Users\kdj\Documents\GitHub\FileUploader\Databases\obj\Debug\predeploy.sql
-C:\Users\kdj\Documents\GitHub\FileUploader\Databases\obj\Debug\Databases.dll
-C:\Users\kdj\Documents\GitHub\FileUploader\Databases\obj\Debug\Databases.pdb

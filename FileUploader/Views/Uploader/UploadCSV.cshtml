@@ -1,0 +1,19 @@
+﻿@using BusinessLogic.ViewModels;
+@model UploaderLoader
+
+@{
+    ViewBag.Title = "Upload CSV";
+}
+
+<h2>Upload CSV</h2>
+
+@using (Html.BeginForm("UploadCSVTestRun", "Uploader", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    if (Model.ErrorMessage != "")
+    {
+        <p class="error-text">@Model.ErrorMessage</p>
+    }
+    <input class="custom-file-upload" type="file" name="SubmittedCSVFile" />
+    <br />
+    <input class="main-button" type="submit" name="Submit" id="Submit" value="Upload" />
+}

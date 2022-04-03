@@ -1,0 +1,40 @@
+﻿@model BusinessLogic.ViewModels.UploaderSubmission
+
+<h1>Results Before Save</h1>
+
+@using (Html.BeginForm("UploadCSV", "Uploader", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <table class="summary-table">
+        <tr>
+            <th>@Html.LabelFor(m => m.UploaderViewResult.RecordsCreated)</th>
+            <td>@Html.DisplayFor(m => m.UploaderViewResult.RecordsCreated)</td>
+        </tr>
+    </table>
+    <br />
+    <table class="standard-table">
+        @foreach (var item in Model.UploaderViewResult.RecordBuilderList)
+        {
+            <tr>
+                <th>Date Created</th>
+                <th>Body Part</th>
+                <th>Exercise</th>
+                <th>Sets</th>
+                <th>Reps</th>
+                <th>Weights</th>
+            </tr>
+            <tr>
+                <td>@Html.DisplayFor(m => item.DateCreated)</td>
+                <td>@Html.DisplayFor(m => item.BodyPart)</td>
+                <td>@Html.DisplayFor(m => item.Exercise)</td>
+                <td>@Html.DisplayFor(m => item.Sets)</td>
+                <td>@Html.DisplayFor(m => item.Reps)</td>
+                <td>@Html.DisplayFor(m => item.Weights)</td>
+            </tr>
+        }
+    </table>
+    <br />
+    @Html.HiddenFor(m => m.FileData)
+    @Html.HiddenFor(m => m.UploaderViewResult)
+    @Html.HiddenFor(m => m.ErrorMessage)
+    <input class="main-button" type="submit" name="Submit" id="Submit" value="Submit" />
+}
