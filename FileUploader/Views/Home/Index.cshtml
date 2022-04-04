@@ -3,10 +3,10 @@
 }
 
 <div class="jumbotron">
-    <h1>Gym Tracker</h1>
+    <h1>Home Page</h1>
 </div>
 
-@using (Html.BeginForm("UploadCSV", "Uploader", FormMethod.Get))
+@using (Html.BeginForm("Index", "GymTracker", FormMethod.Get))
 {
-    <input type="submit" class="main-button" value="Upload CSV">
+    <input type="submit" class="main-button" value="Gym Tracker Overview">
 }

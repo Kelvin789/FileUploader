@@ -5,7 +5,9 @@
     ViewBag.Title = "Upload CSV";
 }
 
-<h2>Upload CSV</h2>
+<div class="jumbotron">
+    <h1>Upload CSV</h1>
+</div>
 
 @using (Html.BeginForm("UploadCSVTestRun", "Uploader", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {

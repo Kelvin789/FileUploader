@@ -1,6 +1,8 @@
 ﻿@model BusinessLogic.ViewModels.UploaderSubmission
 
-<h1>Results Before Save</h1>
+<div class="jumbotron">
+    <h1>Results Before Save</h1>
+</div>
 
 @using (Html.BeginForm("UploadCSV", "Uploader", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
@@ -12,16 +14,16 @@
     </table>
     <br />
     <table class="standard-table">
+        <tr>
+            <th>Date</th>
+            <th>Body Part</th>
+            <th>Exercise</th>
+            <th>Sets</th>
+            <th>Reps</th>
+            <th>Weights</th>
+        </tr>
         @foreach (var item in Model.UploaderViewResult.RecordBuilderList)
         {
-            <tr>
-                <th>Date Created</th>
-                <th>Body Part</th>
-                <th>Exercise</th>
-                <th>Sets</th>
-                <th>Reps</th>
-                <th>Weights</th>
-            </tr>
             <tr>
                 <td>@Html.DisplayFor(m => item.DateCreated)</td>
                 <td>@Html.DisplayFor(m => item.BodyPart)</td>

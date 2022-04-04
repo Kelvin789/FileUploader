@@ -6,7 +6,6 @@ using BusinessLogic.BI;
 using System.Text;
 using BusinessLogic.Helper;
 using BusinessLogic.ViewModels;
-using FileUploader.ViewModels;
 
 namespace FileUploader.Controllers
 {
@@ -15,14 +14,7 @@ namespace FileUploader.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            GymBI GBI = new GymBI();
-
-            GymTrackerViewModel List = new GymTrackerViewModel
-            {
-                GymTrackerList = GBI.GetAllGymTrackerRecords()
-            };
-
-            return View(List);
+            return View();
         }
 
         [HttpGet]
@@ -53,11 +45,11 @@ namespace FileUploader.Controllers
                         GymBI GBI = new GymBI();
                         UploaderViewResult IVR = GBI.BeginUploadProcess(RebuiltFile, SaveData);
 
-                        return RedirectToAction("Index");
+                        return RedirectToAction("Index", "GymTracker");
                     }
                 }
 
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "GymTracker");
             }
             catch (Exception e)
             {

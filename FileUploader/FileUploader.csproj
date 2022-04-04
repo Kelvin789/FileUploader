@@ -128,6 +128,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\GymTrackerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\UploaderController.cs" />
     <Compile Include="Global.asax.cs">
@@ -171,8 +172,8 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Uploader\UploadCSV.cshtml" />
-    <Content Include="Views\Uploader\Index.cshtml" />
     <Content Include="Views\Uploader\UploadCSVTestRun.cshtml" />
+    <Content Include="Views\GymTracker\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
