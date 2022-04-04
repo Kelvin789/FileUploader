@@ -19,6 +19,7 @@
         <th>Sets</th>
         <th>Reps</th>
         <th>Weights</th>
+        <th></th>
     </tr>
     @foreach (var item in Model.GymTrackerList)
     {
@@ -29,6 +30,10 @@
             <td>@Html.DisplayFor(m => item.Sets)</td>
             <td>@Html.DisplayFor(m => item.Reps)</td>
             <td>@Html.DisplayFor(m => item.Weights)</td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { item.ID }) | 
+                @Html.ActionLink("Delete", "Delete", new { item.ID })
+            </td>
         </tr>
     }
 </table>

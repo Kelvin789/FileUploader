@@ -1,0 +1,69 @@
+﻿@model BusinessLogic.Models.GymTracker
+@{
+    ViewBag.Title = "Edit";
+    @Html.HiddenFor(m => m.ID)
+}
+
+<div class="jumbotron">
+    <h1>Edit Record</h1>
+</div>
+
+@using (Html.BeginForm())
+{
+    <div class="form-horizontal">
+        <div class="form-group">
+            @Html.LabelFor(m => m.DateCreated, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(m => m.DateCreated)
+                @Html.ValidationMessageFor(m => m.DateCreated)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.BodyPart, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(m => m.BodyPart)
+                @Html.ValidationMessageFor(m => m.BodyPart)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Exercise, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(m => m.Exercise)
+                @Html.ValidationMessageFor(m => m.Exercise)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Reps, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(m => m.Reps)
+                @Html.ValidationMessageFor(m => m.Reps)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Sets, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(m => m.Sets)
+                @Html.ValidationMessageFor(m => m.Sets)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Weights, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+
+                @Html.EditorFor(m => m.Weights)
+                @Html.ValidationMessageFor(m => m.Weights)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}

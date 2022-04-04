@@ -200,5 +200,12 @@ namespace BusinessLogic.BI
 
             return List.ToList();
         }
+
+        public GymTracker FindRecord(int ID)
+        {
+            GymTracker GymTracker = db.Set<GymTracker>().Find(ID);
+
+            return GymTracker;
+        }
     }
 }

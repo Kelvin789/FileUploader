@@ -1,4 +1,5 @@
 ﻿using BusinessLogic.BI;
+using BusinessLogic.Models;
 using FileUploader.ViewModels;
 using System.Web.Mvc;
 
@@ -17,6 +18,15 @@ namespace FileUploader.Controllers
             };
 
             return View(List);
+        }
+
+        [HttpGet]
+        public ActionResult Edit(int ID)
+        {
+            GymBI GBI = new GymBI();
+            GymTracker GymTracker = GBI.FindRecord(ID);
+
+            return View(GymTracker);
         }
     }
 }
