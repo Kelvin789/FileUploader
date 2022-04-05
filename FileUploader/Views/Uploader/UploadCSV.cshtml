@@ -9,6 +9,11 @@
     <h1>Upload CSV</h1>
 </div>
 
+@using (Html.BeginForm("Index", "GymTracker", FormMethod.Get))
+{
+    <input type="submit" class="btn btn-default" value="Back">
+}
+
 @using (Html.BeginForm("UploadCSVTestRun", "Uploader", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     if (Model.ErrorMessage != "")

@@ -4,6 +4,12 @@
     <h1>Results Before Save</h1>
 </div>
 
+@using (Html.BeginForm("UploadCSV", "Uploader", FormMethod.Get))
+{
+    <input type="submit" class="btn btn-default" value="Back">
+}
+<br />
+
 @using (Html.BeginForm("UploadCSV", "Uploader", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     <table class="summary-table">

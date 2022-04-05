@@ -6,6 +6,7 @@ using Microsoft.VisualBasic.FileIO;
 using System.Data;
 using BusinessLogic.Models;
 using System.Linq;
+using System.Data.Entity;
 
 namespace BusinessLogic.BI
 {
@@ -201,9 +202,20 @@ namespace BusinessLogic.BI
             return List.ToList();
         }
 
-        public GymTracker FindRecord(int ID)
+        public GymTracker FindGymTracker(int ID)
         {
             GymTracker GymTracker = db.Set<GymTracker>().Find(ID);
+
+            return GymTracker;
+        }
+
+        public GymTracker EditGymTracker(GymTracker GymTracker)
+        {
+            if (GymTracker != null)
+            {
+                db.Entry(GymTracker).State = EntityState.Modified;
+                db.SaveChanges();
+            }
 
             return GymTracker;
         }
