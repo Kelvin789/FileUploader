@@ -209,6 +209,17 @@ namespace BusinessLogic.BI
             return GymTracker;
         }
 
+        public GymTracker CreateGymTracker(GymTracker GymTracker)
+        {
+            if (GymTracker != null)
+            {
+                db.GymTrackers.Add(GymTracker);
+                db.SaveChanges();
+            }
+
+            return GymTracker;
+        }
+
         public GymTracker EditGymTracker(GymTracker GymTracker)
         {
             if (GymTracker != null)

@@ -21,6 +21,28 @@ namespace FileUploader.Controllers
         }
 
         [HttpGet]
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Create(GymTracker GymTracker)
+        {
+            GymBI GBI = new GymBI();
+            GymTracker CreatedGymTracker = GBI.CreateGymTracker(GymTracker);
+
+            if (CreatedGymTracker == null)
+            {
+                return View(GymTracker);
+            }
+            else
+            {
+                return RedirectToAction("Index");
+            }
+        }
+
+        [HttpGet]
         public ActionResult Edit(int ID)
         {
             GymBI GBI = new GymBI();

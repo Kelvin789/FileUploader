@@ -6,10 +6,17 @@
 <div class="jumbotron">
     <h1>Gym Tracker Overview</h1>
 </div>
-@using (Html.BeginForm("UploadCSV", "Uploader", FormMethod.Get))
-{
-    <input type="submit" class="main-button" value="Upload CSV">
-}
+<div>
+    @using (Html.BeginForm("UploadCSV", "Uploader", FormMethod.Get))
+    {
+        <input type="submit" class="main-button" value="Upload CSV">
+    }
+
+    @using (Html.BeginForm("Create", "GymTracker", FormMethod.Get))
+    {
+        <input type="submit" class="main-button" value="Create">
+    }
+</div>
 <br />
 <table class="standard-table">
     <tr>
@@ -31,7 +38,7 @@
             <td>@Html.DisplayFor(m => item.Reps)</td>
             <td>@Html.DisplayFor(m => item.Weights)</td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { item.ID }) | 
+                @Html.ActionLink("Edit", "Edit", new { item.ID }) |
                 @Html.ActionLink("Delete", "Delete", new { item.ID })
             </td>
         </tr>
