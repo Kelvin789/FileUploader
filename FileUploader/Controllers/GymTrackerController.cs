@@ -66,5 +66,30 @@ namespace FileUploader.Controllers
 
             return RedirectToAction("Index");
         }
+
+        [HttpGet]
+        public ActionResult Delete(int ID)
+        {
+            GymBI GBI = new GymBI();
+            GymTracker GymTracker = GBI.FindGymTracker(ID);
+
+            return View(GymTracker);
+        }
+
+        [HttpPost]
+        public ActionResult Delete(GymTracker GymTracker)
+        {
+            if (ModelState.IsValid)
+            {
+                GymBI GBI = new GymBI();
+                GBI.DeleteGymTracker(GymTracker);
+            }
+            else
+            {
+                return View(GymTracker);
+            }
+
+            return RedirectToAction("Index");
+        }
     }
 }

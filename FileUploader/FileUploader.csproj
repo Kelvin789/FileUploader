@@ -176,6 +176,7 @@
     <Content Include="Views\GymTracker\Index.cshtml" />
     <Content Include="Views\GymTracker\Edit.cshtml" />
     <Content Include="Views\GymTracker\Create.cshtml" />
+    <Content Include="Views\GymTracker\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

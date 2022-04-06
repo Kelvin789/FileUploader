@@ -197,7 +197,7 @@ namespace BusinessLogic.BI
 
         public List<GymTracker> GetAllGymTrackerRecords()
         {
-            List<GymTracker> List = db.Set<GymTracker>().ToList();
+            List<GymTracker> List = db.Set<GymTracker>().OrderByDescending(d => d.DateCreated).ToList();
 
             return List.ToList();
         }
@@ -225,6 +225,17 @@ namespace BusinessLogic.BI
             if (GymTracker != null)
             {
                 db.Entry(GymTracker).State = EntityState.Modified;
+                db.SaveChanges();
+            }
+
+            return GymTracker;
+        }
+
+        public GymTracker DeleteGymTracker(GymTracker GymTracker)
+        {
+            if (GymTracker != null)
+            {
+                db.Entry(GymTracker).State = EntityState.Deleted;
                 db.SaveChanges();
             }
 

@@ -7,15 +7,8 @@
     <h1>Gym Tracker Overview</h1>
 </div>
 <div>
-    @using (Html.BeginForm("UploadCSV", "Uploader", FormMethod.Get))
-    {
-        <input type="submit" class="main-button" value="Upload CSV">
-    }
-
-    @using (Html.BeginForm("Create", "GymTracker", FormMethod.Get))
-    {
-        <input type="submit" class="main-button" value="Create">
-    }
+    <input type="button" class="main-button" value="Upload CSV" onclick="location.href='@Url.Action("UploadCSV", "Uploader", FormMethod.Get)'" />
+    <input type="button" class="main-button" value="Create" onclick="location.href='@Url.Action("Create", "GymTracker", FormMethod.Get)'" />
 </div>
 <br />
 <table class="standard-table">

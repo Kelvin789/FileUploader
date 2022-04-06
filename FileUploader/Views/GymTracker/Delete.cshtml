@@ -1,0 +1,76 @@
+﻿@model BusinessLogic.Models.GymTracker
+@{
+    ViewBag.Title = "Delete";
+}
+
+<div class="jumbotron">
+    <h1>Delete Record</h1>
+</div>
+
+@using (Html.BeginForm("Index", "GymTracker", FormMethod.Get))
+{
+    <input type="submit" class="btn btn-default" value="Back">
+}
+<br />
+<div>
+    @using (Html.BeginForm("Delete", "GymTracker", FormMethod.Post))
+    {
+        <div class="form-horizontal">
+            <div class="form-group">
+                @Html.LabelFor(m => m.DateCreated, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.DateCreated, new { @readonly = "readonly" })
+                    @Html.ValidationMessageFor(m => m.DateCreated)
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.BodyPart, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.BodyPart, new { @readonly = "readonly" })
+                    @Html.ValidationMessageFor(m => m.BodyPart)
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.Exercise, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.Exercise, new { @readonly = "readonly" })
+                    @Html.ValidationMessageFor(m => m.Exercise)
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.Reps, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.Reps, new { @readonly = "readonly" })
+                    @Html.ValidationMessageFor(m => m.Reps)
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.Sets, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.Sets, new { @readonly = "readonly" })
+                    @Html.ValidationMessageFor(m => m.Sets)
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.Weights, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+
+                    @Html.TextBoxFor(m => m.Weights, new { @readonly = "readonly" })
+                    @Html.ValidationMessageFor(m => m.Weights)
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="button" class="btn btn-default" value="Edit" onclick="location.href='@Url.Action("Edit", "GymTracker", new { id = Model.ID})'" />
+                    <input type="submit" class="btn btn-default" value="Delete" onclick="return confirm('Are you sure you wish to submit?');" />
+                </div>
+            </div>
+        </div>
+    }
+</div>
