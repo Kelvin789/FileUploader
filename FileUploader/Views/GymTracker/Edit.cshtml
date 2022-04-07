@@ -19,7 +19,7 @@
         <div class="form-group">
             @Html.LabelFor(m => m.DateCreated, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(m => m.DateCreated)
+                @Html.EditorFor(m => m.DateCreated, new { htmlAttributes = new { @class = "input-color" } })
                 @Html.ValidationMessageFor(m => m.DateCreated)
             </div>
         </div>
@@ -27,7 +27,7 @@
         <div class="form-group">
             @Html.LabelFor(m => m.BodyPart, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(m => m.BodyPart)
+                @Html.EditorFor(m => m.BodyPart, new { htmlAttributes = new { @class = "input-color" } })
                 @Html.ValidationMessageFor(m => m.BodyPart)
             </div>
         </div>
@@ -35,7 +35,7 @@
         <div class="form-group">
             @Html.LabelFor(m => m.Exercise, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(m => m.Exercise)
+                @Html.EditorFor(m => m.Exercise, new { htmlAttributes = new { @class = "input-color" } })
                 @Html.ValidationMessageFor(m => m.Exercise)
             </div>
         </div>
@@ -43,7 +43,7 @@
         <div class="form-group">
             @Html.LabelFor(m => m.Reps, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(m => m.Reps)
+                @Html.EditorFor(m => m.Reps, new { htmlAttributes = new { @class = "input-color" } })
                 @Html.ValidationMessageFor(m => m.Reps)
             </div>
         </div>
@@ -51,7 +51,7 @@
         <div class="form-group">
             @Html.LabelFor(m => m.Sets, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(m => m.Sets)
+                @Html.EditorFor(m => m.Sets, new { htmlAttributes = new { @class = "input-color" } })
                 @Html.ValidationMessageFor(m => m.Sets)
             </div>
         </div>
@@ -60,14 +60,14 @@
             @Html.LabelFor(m => m.Weights, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
 
-                @Html.EditorFor(m => m.Weights)
+                @Html.EditorFor(m => m.Weights, new { htmlAttributes = new { @class = "input-color" } })
                 @Html.ValidationMessageFor(m => m.Weights)
             </div>
         </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" class="btn btn-default btn-lg" value="Save" />
             </div>
         </div>
     </div>

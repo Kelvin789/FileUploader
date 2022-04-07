@@ -31,8 +31,8 @@
             <td>@Html.DisplayFor(m => item.Reps)</td>
             <td>@Html.DisplayFor(m => item.Weights)</td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { item.ID }) |
-                @Html.ActionLink("Delete", "Delete", new { item.ID })
+                @Html.ActionLink("Edit", "Edit", new { item.ID }, new { @class = "links" }) |
+                @Html.ActionLink("Delete", "Delete", new { item.ID }, new { @class = "links" })
             </td>
         </tr>
     }
