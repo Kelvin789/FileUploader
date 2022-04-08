@@ -1,5 +1,6 @@
 ﻿using BusinessLogic.BI;
 using BusinessLogic.Models;
+using FileUploader.Helpers;
 using FileUploader.ViewModels;
 using System.Web.Mvc;
 
@@ -12,7 +13,7 @@ namespace FileUploader.Controllers
         {
             GymBI GBI = new GymBI();
 
-            GymTrackerViewModel List = new GymTrackerViewModel
+            GymTrackerListViewModel List = new GymTrackerListViewModel
             {
                 GymTrackerList = GBI.GetAllGymTrackerRecords()
             };
@@ -48,7 +49,10 @@ namespace FileUploader.Controllers
             GymBI GBI = new GymBI();
             GymTracker GymTracker = GBI.FindGymTracker(ID);
 
-            return View(GymTracker);
+            ModelToVM ModelToVM = new ModelToVM();
+            GymTrackerViewModel VM = ModelToVM.GymTrackerToViewModel(GymTracker);
+
+            return View(VM);
         }
 
         [HttpPost]
@@ -73,7 +77,10 @@ namespace FileUploader.Controllers
             GymBI GBI = new GymBI();
             GymTracker GymTracker = GBI.FindGymTracker(ID);
 
-            return View(GymTracker);
+            ModelToVM ModelToVM = new ModelToVM();
+            GymTrackerViewModel VM = ModelToVM.GymTrackerToViewModel(GymTracker);
+
+            return View(VM);
         }
 
         [HttpPost]
