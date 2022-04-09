@@ -93,8 +93,12 @@ namespace FileUploader.Controllers
                         // Return if issues were found while parsing or saving
                         if (IVR.Validation != "")
                         {
-                            TempData["ErrorMessage"] = IVR.Validation;
-                            RedirectToAction("UploadCSV");
+                            UploaderLoader UL = new UploaderLoader
+                            {
+                                ErrorMessage = IVR.Validation
+                            };
+
+                            return RedirectToAction("UploadCSV", UL);
                         }
 
                         UploaderSubmission.UploaderViewResult = new UploaderViewResult
